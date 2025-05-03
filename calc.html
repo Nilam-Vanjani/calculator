@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculater</title>
+    <link rel="stylesheet" href="calc.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+  </head>
+  <body>
+    <div id="main">
+      <div id="block">
+        <h1 id="screen" style="margin-left: 125px"></h1>
+        <input
+          type="text"
+          id="output"
+          disabled
+          style="margin-left: 85px; height: 35px; background-color: white"
+        />
+      </div>
+      <table>
+        <tr>
+          <td>
+            <button onclick="clearScr()" style="color: rgb(47, 241, 255)">
+              AC
+            </button>
+          </td>
+          <td>
+            <button
+              onclick="negative()"
+              class="bi bi-plus-slash-minus"
+              style="color: rgb(47, 241, 255)"
+            ></button>
+          </td>
+          <td>
+            <button
+              onclick="add(' % ')"
+              class="bi bi-percent"
+              style="color: rgb(47, 241, 255)"
+            ></button>
+          </td>
+          <td>
+            <button
+              onclick="add(' ÷ ')"
+              style="color: red; font-size: xx-large"
+            >
+              ÷
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td><button onclick="add('7')">7</button></td>
+          <td><button onclick="add('8')">8</button></td>
+          <td><button onclick="add('9')">9</button></td>
+          <td><button onclick="add(' x ')" style="color: red">x</button></td>
+        </tr>
+        <tr>
+          <td><button onclick="add('4')">4</button></td>
+          <td><button onclick="add('5')">5</button></td>
+          <td><button onclick="add('6')">6</button></td>
+          <td>
+            <button
+              onclick="add(' - ')"
+              class="bi bi-dash"
+              style="color: red"
+            ></button>
+          </td>
+        </tr>
+        <tr>
+          <td><button onclick="add('1')">1</button></td>
+          <td><button onclick="add('2')">2</button></td>
+          <td><button onclick="add('3')">3</button></td>
+          <td>
+            <button
+              onclick="add(' + ')"
+              class="bi bi-plus-lg"
+              style="color: red"
+            ></button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button onclick="backspace()" class="bi bi-backspace"></button>
+          </td>
+          <td><button onclick="add('0')">0</button></td>
+          <td><button onclick="add('.')" class="bi bi-dot"></button></td>
+          <td><button onclick="sol()" style="color: red">=</button></td>
+        </tr>
+      </table>
+    </div>
+    <script>
+      function add(val) {
+        document.getElementById("screen").innerText += val;
+      }
+
+      function sol() {
+        var val = document.getElementById("screen").innerText;
+
+        if (val[val.length - 1] == "%") {
+          percent(val);
+        } else {
+          document.getElementById("output").value = eval(
+            val.replace("x", "*").replace("÷", "/")
+          );
+        }
+      }
+
+      function percentage(partialValue, totalValue) {
+        return (totalValue*partialValue/100);
+      }
+
+      function percent(equation) {
+        if (equation.includes("+")) {
+          var parts = equation.split("+");
+          console.log(parts[0]);
+          console.log(parts[1]);
+          var nums = parts[1].split(" ");
+          var result = percentage(parseInt(nums[0]), parseInt(parts[0]));
+          console.log(result);
+          console.log(result);
+          console.log(result);
+          document.getElementById("output").value = result + parseInt(parts[0]);
+        }
+        else if(equation.includes("-")) {
+          var parts = equation.split("-");
+          console.log(parts[0]);
+          console.log(parts[1]);
+          var nums = parts[1].split(" ");
+          var result = percentage(parseInt(nums[0]), parseInt(parts[0]));
+          console.log(result);
+          console.log(result);
+          console.log(result);
+          document.getElementById("output").value = result  - parseInt(parts[0]);
+        }
+        
+        else if(equation.includes("x")){
+          
+          var parts = equation.split("x");
+          console.log(parts[0]);
+          console.log(parts[1]);
+          var nums = parts[1].split(" ");
+          var result = percentage(parseInt(nums[0]), parseInt(parts[0]));
+          console.log(result);
+          console.log(result);
+          console.log(result);
+          document.getElementById("output").value = result ;
+        
+        }
+        else{
+          
+          var parts = equation.split("÷");
+          console.log(parts[0]);
+          console.log(parts[1]);
+          var nums = parts[1].split("÷");
+          var result = percentage(parseInt(nums[0]), parseInt(parts[0]));
+          console.log(result);
+          console.log(result);
+          console.log(result);
+          document.getElementById("output").value = parseInt(parts[0]) / result ;
+        }}
+
+      function clearScr() {
+        document.getElementById("screen").innerText = "";
+        document.getElementById("output").value = "";
+      }
+
+      function backspace() {
+        var equaltion = document.getElementById("screen").innerText;
+        document.getElementById("screen").innerText = equaltion.substring(
+          0,
+          equaltion.length - 1
+        );
+      }
+
+      function negative() {
+        var val = document.getElementById("screen").innerText;
+        document.getElementById("screen").innerText = -val;
+      }
+    </script>
+  </body>
+</html>
